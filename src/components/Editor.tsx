@@ -19,8 +19,10 @@ import {
   RxCode,
   RxChevronDown,
   RxChatBubble,
+  RxUnderline,
 } from "react-icons/rx";
 import { BubbleButton } from "./BubbleButton";
+import Underline from "@tiptap/extension-underline";
 
 lowlight.registerLanguage("html", html);
 lowlight.registerLanguage("css", css);
@@ -34,6 +36,7 @@ export function Editor() {
       CodeBlockLowlight.configure({
         lowlight,
       }),
+      Underline,
       // BubbleMenu.configure({
       //   element: document.querySelector(".menu"),
       // }),
@@ -82,6 +85,12 @@ export function Editor() {
               <RxFontItalic className="h-4 w-4 " />
             </BubbleButton>
 
+            <BubbleButton
+              onClick={() => editor.chain().focus().toggleUnderline().run()}
+              data-active={editor.isActive("underline")}
+            >
+              <RxUnderline className="h-4 w-4 " />
+            </BubbleButton>
             <BubbleButton
               onClick={() => editor.chain().focus().toggleStrike().run()}
               data-active={editor.isActive("strike")}
