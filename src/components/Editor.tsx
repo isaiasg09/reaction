@@ -17,7 +17,10 @@ import {
   RxFontItalic,
   RxStrikethrough,
   RxCode,
+  RxChevronDown,
+  RxChatBubble,
 } from "react-icons/rx";
+import { BubbleButton } from "./BubbleButton";
 
 lowlight.registerLanguage("html", html);
 lowlight.registerLanguage("css", css);
@@ -51,38 +54,48 @@ export function Editor() {
           editor={editor}
           tippyOptions={{ duration: 100 }}
         >
-          <button
-            onClick={() => editor.chain().focus().toggleBold().run()}
-            className={`p-2 text-zinc-200 text-sm flex items-center gap-1.5 font-medium leading-none hover:text-zinc-50 hover:bg-zinc-600 transition ${
-              editor.isActive("bold") && "text-blue-500"
-            }`}
-          >
-            <RxFontBold />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleItalic().run()}
-            className={`p-2 text-zinc-200 text-sm flex items-center gap-1.5 font-medium leading-none hover:text-zinc-50 hover:bg-zinc-600 transition ${
-              editor.isActive("italic") && "text-blue-500"
-            }`}
-          >
-            <RxFontItalic />
-          </button>
-          <button
-            onClick={() => editor.chain().focus().toggleStrike().run()}
-            className={`p-2 text-zinc-200 text-sm flex items-center gap-1.5 font-medium leading-none hover:text-zinc-50 hover:bg-zinc-600 transition ${
-              editor.isActive("strike") && "text-blue-500"
-            }`}
-          >
-            <RxStrikethrough />
-          </button>
-          <button
+          <BubbleButton
             onClick={() => editor.chain().focus().toggleCode().run()}
-            className={`p-2 text-zinc-200 text-sm flex items-center gap-1.5 font-medium leading-none hover:text-zinc-50 hover:bg-zinc-600 transition ${
-              editor.isActive("code") && "text-blue-500"
-            }`}
           >
-            <RxCode />
-          </button>
+            Text
+            <RxChevronDown className="h-4 w-4 " />
+          </BubbleButton>
+          <BubbleButton
+            onClick={() => editor.chain().focus().toggleCode().run()}
+          >
+            <RxChatBubble className="h-4 w-4 " />
+            Comment
+          </BubbleButton>
+
+          <div className="flex items-center ">
+            <BubbleButton
+              onClick={() => editor.chain().focus().toggleBold().run()}
+              data-active={editor.isActive("bold")}
+            >
+              <RxFontBold className="h-4 w-4 " />
+            </BubbleButton>
+
+            <BubbleButton
+              onClick={() => editor.chain().focus().toggleItalic().run()}
+              data-active={editor.isActive("italic")}
+            >
+              <RxFontItalic className="h-4 w-4 " />
+            </BubbleButton>
+
+            <BubbleButton
+              onClick={() => editor.chain().focus().toggleStrike().run()}
+              data-active={editor.isActive("strike")}
+            >
+              <RxStrikethrough className="h-4 w-4 " />
+            </BubbleButton>
+
+            <BubbleButton
+              onClick={() => editor.chain().focus().toggleCode().run()}
+              data-active={editor.isActive("code")}
+            >
+              <RxCode className="h-4 w-4 " />
+            </BubbleButton>
+          </div>
         </BubbleMenu>
       )}
 
