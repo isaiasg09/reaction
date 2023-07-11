@@ -7,7 +7,6 @@ import {
   FloatingMenu,
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
-import { initialContent } from "./initialContent";
 
 import { lowlight } from "lowlight/lib/core";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -31,6 +30,7 @@ import { BubbleButton } from "./BubbleButton";
 
 import Placeholder from "@tiptap/extension-placeholder";
 import Underline from "@tiptap/extension-underline";
+import { FloatingButton } from "./FloatingButton";
 
 lowlight.registerLanguage("html", html);
 lowlight.registerLanguage("css", css);
@@ -49,12 +49,12 @@ export function Editor() {
         placeholder: "Press '/' for commands...",
       }),
     ],
-    content: initialContent,
     editorProps: {
       attributes: {
         class: "outline-none",
       },
     },
+    autofocus: true,
   });
 
   return (
@@ -73,7 +73,7 @@ export function Editor() {
           className="bg-zinc-700 py-2 px-1 shadow-xl border border-zinc-600 shadow-black/20 rounded-md overflow-hidden flex flex-col transition"
         >
           {/* Text */}
-          <button className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none">
+          <FloatingButton>
             <img
               src="http://www.notion.so/images/blocks/text/en-US.png"
               alt="Text"
@@ -86,11 +86,10 @@ export function Editor() {
                 Just start writing with plain text.
               </span>
             </div>
-          </button>
+          </FloatingButton>
 
           {/* Heading 1 */}
-          <button
-            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+          <FloatingButton
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 1 }).run()
             }
@@ -107,11 +106,10 @@ export function Editor() {
                 Big section heading.
               </span>
             </div>
-          </button>
+          </FloatingButton>
 
           {/* Heading 2 */}
-          <button
-            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+          <FloatingButton
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 2 }).run()
             }
@@ -128,11 +126,10 @@ export function Editor() {
                 Medium section heading.
               </span>
             </div>
-          </button>
+          </FloatingButton>
 
           {/* Heading 3 */}
-          <button
-            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+          <FloatingButton
             onClick={() =>
               editor.chain().focus().toggleHeading({ level: 3 }).run()
             }
@@ -149,11 +146,10 @@ export function Editor() {
                 Small section heading.
               </span>
             </div>
-          </button>
+          </FloatingButton>
 
           {/* Divider */}
-          <button
-            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+          <FloatingButton
             onClick={() => editor.chain().focus().setHorizontalRule().run()}
           >
             <img
@@ -168,7 +164,7 @@ export function Editor() {
                 Visually divide blocks.
               </span>
             </div>
-          </button>
+          </FloatingButton>
         </FloatingMenu>
       )}
 
@@ -229,6 +225,7 @@ export function Editor() {
       <EditorContent
         editor={editor}
         className="max-w-[700px] mx-auto pt-16 prose prose-invert prose-violet"
+        autoFocus
       />
     </>
   );
