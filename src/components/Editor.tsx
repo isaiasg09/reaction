@@ -1,4 +1,4 @@
-import '../index.css';
+import "../index.css";
 
 import {
   BubbleMenu,
@@ -8,7 +8,6 @@ import {
 } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { initialContent } from "./initialContent";
-// import BubbleMenu from "@tiptap/extension-bubble-menu";
 
 import { lowlight } from "lowlight/lib/core";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
@@ -46,9 +45,6 @@ export function Editor() {
         lowlight,
       }),
       Underline,
-      // BubbleMenu.configure({
-      //   element: document.querySelector(".menu"),
-      // }),
       Placeholder.configure({
         placeholder: "Press '/' for commands...",
       }),
@@ -76,7 +72,8 @@ export function Editor() {
           }}
           className="bg-zinc-700 py-2 px-1 shadow-xl border border-zinc-600 shadow-black/20 rounded-md overflow-hidden flex flex-col transition"
         >
-          <button className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition">
+          {/* Text */}
+          <button className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none">
             <img
               src="http://www.notion.so/images/blocks/text/en-US.png"
               alt="Text"
@@ -87,6 +84,88 @@ export function Editor() {
               <span className="text-sm">Text</span>
               <span className="text-xs text-zinc-400">
                 Just start writing with plain text.
+              </span>
+            </div>
+          </button>
+
+          {/* Heading 1 */}
+          <button
+            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 1 }).run()
+            }
+          >
+            <img
+              src="http://www.notion.so/images/blocks/header.57a7576a.png"
+              alt="Heading 1"
+              className="w-12 border border-zinc-600 rounded"
+            />
+
+            <div className="flex flex-col text-left">
+              <span className="text-sm">Heading 1</span>
+              <span className="text-xs text-zinc-400">
+                Big section heading.
+              </span>
+            </div>
+          </button>
+
+          {/* Heading 2 */}
+          <button
+            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 2 }).run()
+            }
+          >
+            <img
+              src="http://www.notion.so/images/blocks/subheader.9aab4769.png"
+              alt="Heading 2"
+              className="w-12 border border-zinc-600 rounded"
+            />
+
+            <div className="flex flex-col text-left">
+              <span className="text-sm">Heading 2</span>
+              <span className="text-xs text-zinc-400">
+                Medium section heading.
+              </span>
+            </div>
+          </button>
+
+          {/* Heading 3 */}
+          <button
+            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+            onClick={() =>
+              editor.chain().focus().toggleHeading({ level: 3 }).run()
+            }
+          >
+            <img
+              src="http://www.notion.so/images/blocks/subsubheader.d0ed0bb3.png"
+              alt="Heading 3"
+              className="w-12 border border-zinc-600 rounded"
+            />
+
+            <div className="flex flex-col text-left">
+              <span className="text-sm">Heading 3</span>
+              <span className="text-xs text-zinc-400">
+                Small section heading.
+              </span>
+            </div>
+          </button>
+
+          {/* Divider */}
+          <button
+            className="flex items-center gap-2 py-1 px-2 rounded min-2-[280px] hover:bg-zinc-600 transition focus:bg-zinc-600 outline-none"
+            onClick={() => editor.chain().focus().setHorizontalRule().run()}
+          >
+            <img
+              src="https://www.notion.so/images/blocks/divider.210d0faf.png "
+              alt="Divider"
+              className="w-12 border border-zinc-600 rounded bg-zinc-50"
+            />
+
+            <div className="flex flex-col text-left">
+              <span className="text-sm">Divider</span>
+              <span className="text-xs text-zinc-400">
+                Visually divide blocks.
               </span>
             </div>
           </button>
@@ -149,7 +228,7 @@ export function Editor() {
 
       <EditorContent
         editor={editor}
-        className="max-w-[700px] mx-auto pt-16 prose prose-invert prose-violet "
+        className="max-w-[700px] mx-auto pt-16 prose prose-invert prose-violet"
       />
     </>
   );
